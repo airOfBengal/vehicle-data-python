@@ -5,5 +5,8 @@ if __name__ == "__main__":
     vd = VehicleData(
         "E:\\Projects\\Interviews\\pythonAssignmentV2\\amag\\data\\data.npy"
     )
+
     x = lambda o, id: o.df[o.df["id"] == id]
-    print(vd.filter(x(vd, 1)))
+    data_segment = vd.filter(x(vd, 0))
+
+    vd.plot(data_segment)

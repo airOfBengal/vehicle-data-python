@@ -5,6 +5,12 @@ import matplotlib.pyplot as plt
 
 class VehicleData:
     def __init__(self, filepath, columns=["index", "id", "x", "y"]) -> None:
+        """Initialize the VehicleData instance with data provided in the path.
+
+        Args:
+            filepath (str): Path to the data file.
+            columns (list): Column names of given data.
+        """
         try:
             self.df = pd.DataFrame(
                 np.load(filepath),
@@ -31,9 +37,18 @@ class VehicleData:
         """To filter based on input functions.
 
         Args:
-            fun (function): To get all the samples associated with the id number.
+            fun (function): Filter function.
 
         Returns:
             Dataframe: List of latitudinal and longitudinal values of the trajectory, Empty otherwise.
         """
         return fun[["x", "y"]]
+
+    def plot(self, data):
+        """Plots only filtered data segment.
+
+        Args:
+            data (Dataframe): Filtered segment data to plot.
+        """
+        plt.scatter(data["x"], data["y"])
+        plt.show()
