@@ -7,7 +7,7 @@ def get_data(df, id):
 
 if __name__ == "__main__":
     vd = VehicleData(
-        "E:\\Projects\\Interviews\\pythonAssignmentV2\\amag\\data\\data.npy"
+        "amag/data/data.npy"
     )
 
     data_segment = vd.filter(get_data, 0)

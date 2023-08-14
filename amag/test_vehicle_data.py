@@ -6,7 +6,7 @@ class TestVehicleData:
     @pytest.fixture
     def vehicle_data(self):
         return VehicleData(
-            "E:\\Projects\\Interviews\\pythonAssignmentV2\\amag\\data\\data.npy"
+            "data/data.npy"
         )
 
     def test_segment(self, vehicle_data):
