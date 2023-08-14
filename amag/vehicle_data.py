@@ -33,16 +33,17 @@ class VehicleData:
             return self.df[self.df["id"] == id]
         return pd.DataFrame()
 
-    def filter(self, fun):
+    def filter(self, fun, segment_id=0):
         """To filter based on input functions.
 
         Args:
             fun (function): Filter function.
+            segment_id (int): To get the trajectory associated with the id number.
 
         Returns:
             Dataframe: List of latitudinal and longitudinal values of the trajectory, Empty otherwise.
         """
-        return fun[["x", "y"]]
+        return fun(self.df, segment_id)
 
     def plot(self, data):
         """Plots only filtered data segment.

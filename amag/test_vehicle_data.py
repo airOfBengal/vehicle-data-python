@@ -18,17 +18,21 @@ class TestVehicleData:
         assert data.shape[0] == 0
 
     def test_filter_list_of_lats_lngs(self, vehicle_data):
-        x = lambda o, id: o.df[o.df["id"] == id]
-        data = vehicle_data.filter(x(vehicle_data, 1))
+        def get_data(df, id):
+            return df[df["id"] == id][["x", "y"]]
+
+        data = vehicle_data.filter(get_data, 1)
         assert data.shape[0] > 0
         assert data.shape[1] == 2
 
     def test_filter_empty_list_of_lats_lngs(self, vehicle_data):
-        x = lambda o, id: o.df[o.df["id"] == id]
-        data = vehicle_data.filter(x(vehicle_data, -1))
+        def get_data(df, id):
+            return df[df["id"] == id][["x", "y"]]
+
+        data = vehicle_data.filter(get_data, -1)
         assert data.shape[0] == 0
         assert data.shape[1] == 2
 
-        data = vehicle_data.filter(x(vehicle_data, 200))
+        data = vehicle_data.filter(get_data, 200)
         assert data.shape[0] == 0
         assert data.shape[1] == 2
