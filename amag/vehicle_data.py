@@ -15,6 +15,25 @@ class VehicleData:
             self.df = None
 
     def segment_by_id(self, id):
+        """Selects a subset from the data using a specific id.
+
+        Args:
+            id (int): To get all the samples associated with the id number.
+
+        Returns:
+            Dataframe: Subset of data associated with the id, Empty otherwise.
+        """
         if self.df is not None:
             return self.df[self.df["id"] == id]
         return pd.DataFrame()
+
+    def filter(self, fun):
+        """To filter based on input functions.
+
+        Args:
+            fun (function): To get all the samples associated with the id number.
+
+        Returns:
+            Dataframe: List of latitudinal and longitudinal values of the trajectory, Empty otherwise.
+        """
+        return fun[["x", "y"]]
